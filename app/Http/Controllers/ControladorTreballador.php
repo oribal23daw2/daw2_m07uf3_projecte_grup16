@@ -5,20 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Treballador;
 
-class ControladorTreballador extends Controller
-{
+class ControladorTreballador extends Controller{
+    
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
+    public function index(){
         $dades_treballadors = Treballador::all();
         return view('llista2', compact('dades_treballadors'));
-        // Recollirà totes les entrades de la taula treballadors i les desarà dins d'una
-        //variable de nom $dades_treballadors
-        //Cridara a la vista llista.blade.php que es trobarà a resouces/views per
-        //mostrar les dades dels treballadors
-        //The compact() function creates an array from variables and their values.
+    }
+
+    public function index_basic(){
+        $dades_treballadors = Treballador::all();
+        return view('llista-basica', compact('dades_treballadors'));
     }
 
     /**
@@ -61,16 +60,22 @@ class ControladorTreballador extends Controller
     public function show($tid)
     {
         $dades_treballador = Treballador::findOrFail($tid);
-        return view('mostra',compact('dades_treballador'));
+        return view('mostra', compact('dades_treballador'));
     }
+
+    public function show_basic($tid)
+    {
+        $dades_treballador = Treballador::findOrFail($tid);
+        return view('mostra-basica', compact('dades_treballador'));
+    }
+
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($tid)
-    {
+    public function edit($tid){
         $dades_treballador = Treballador::findOrFail($tid);
-        return view('actualitza',compact('dades_treballador'));
+        return view('actualitza', compact('dades_treballador'));
     }
 
     /**
@@ -99,10 +104,11 @@ class ControladorTreballador extends Controller
         return view('dashboard');
     }
 
+
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $tid)
+    public function destroy($tid)
     {
         $treballador = Treballador::findOrFail($tid)->delete();
         return view('dashboard');

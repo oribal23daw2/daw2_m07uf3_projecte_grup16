@@ -38,15 +38,24 @@
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
-
+        <!-- Tipus -->
+        <div>
+            <x-input-label for="tipus" :value="__('tipus')" />
+                <x-text-input id="tipus" class="block mt-1 w-full" type="text"
+                name="tipus" :value="old('tipus')" required />
+            <x-input-error :messages="$errors->get('tipus')" class="mt-2" />
+        </div>
         <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
+            <!-- <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
                 {{ __('Already registered?') }}
-            </a>
+            </a> -->
 
             <x-primary-button class="ms-4">
                 {{ __('Register') }}
             </x-primary-button>
         </div>
     </form>
+    <div class="p-6 bg-white border-b border-gray-200">
+        <a href="{{ url('dashboard') }}">Torna al dashboard<a/>
+    </div>
 </x-guest-layout>

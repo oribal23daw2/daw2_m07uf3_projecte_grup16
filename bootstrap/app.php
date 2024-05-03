@@ -15,10 +15,9 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         //
-        // $middleware->validateCsrfTokens(except: [
-        // '/noureg',
-        // 'delreg',
-        // ]);
+        $middleware->alias([
+         'adminAuth' => \App\Http\Middleware\AdminAuth::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         $exceptions->renderable(function(QueryException $exception) {
