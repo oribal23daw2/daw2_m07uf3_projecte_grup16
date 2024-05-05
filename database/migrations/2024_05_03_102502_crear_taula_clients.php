@@ -12,18 +12,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('clients', function (Blueprint $table) {
-            $table->string('Dni_client')->primary();
-            $table->string('Nom_i_cognoms');
+            $table->string('DNI', 9)->primary();
+            $table->string('Noms');
             $table->integer('Edat');
             $table->string('Telèfon');
             $table->string('Adreça');
             $table->string('Ciutat');
             $table->string('País');
             $table->string('Email');
-            $table->string('Número_del_permís_de_conducció');
-            $table->integer('Punts_del_permís_de_conducció');
-            $table->enum('Tipus_de_targeta', ['Dèbit', 'Crèdit']);
-            $table->string('Número_de_la_targeta');
+            $table->string('Número_permís_conducció');
+            $table->integer('Punts_permís_conducció');
+            $table->enum('Tipus_targeta', ['Dèbit', 'Crèdit']);
+            $table->string('Número_targeta');
             $table->timestamps();
         });
     }

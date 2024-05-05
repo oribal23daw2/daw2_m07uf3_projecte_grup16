@@ -3,15 +3,15 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Services\TelegramNotificationService;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
-    public function register(): void
+    public function register()
     {
-        //
+        $this->app->bind(TelegramNotificationService::class, function ($app) {
+            return new TelegramNotificationService(config('services.telegram.bot_token'));
+        });
     }
 
     /**

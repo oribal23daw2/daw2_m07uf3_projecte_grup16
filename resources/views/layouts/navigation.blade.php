@@ -23,13 +23,13 @@
                 @if(auth()->user()->tipus === 'capDepartament')
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                            {{ __('Dashboard') }}
+                            {{ __('Dashboard admin.') }}
                         </x-nav-link>
                     </div>
                 @else
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                         <x-nav-link :href="route('dashboard-basic')" :active="request()->routeIs('dashboard-basic')">
-                            {{ __('Dashboard bàsic') }}
+                            {{ __('Dashboard') }}
                         </x-nav-link>
                     </div>
                 @endif

@@ -7,27 +7,50 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div>Treballadors
-                    <div class="p-6 bg-white border-b border-gray-200">
-                        <a href="{{ url('clients/index') }}">Visualització bàsica<a/>
-                    </div>
+            <div>Usuaris
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                    
+                        <div class="p-6 bg-white border-b border-gray-200">
+                            <a href="{{ url('users/crear') }}">Afegir usuari<a/>
+                        </div>
+                        <div class="p-6 bg-white border-b border-gray-200">
+                            <a href="{{ url('users') }}">Esborrar/Modificar/Visualitzar usuaris<a/>
+                        </div>
+                    
+                </div>   
+            </div><br>    
+            <div>Clients
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                    
+                        <div class="p-6 bg-white border-b border-gray-200">
+                            <a href="{{ url('clients/crear') }}">Afegir Client<a/>
+                        </div>
+                        <div class="p-6 bg-white border-b border-gray-200">
+                            <a href="{{ url('clients') }}">Esborrar/Modificar/Visualitzar clients<a/>
+                        </div>
+                    
+                </div>   
+            </div><br>  
+            <div>Automòbils
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                        <div class="p-6 bg-white border-b border-gray-200">
+                            <a href="{{ url('autos/crear') }}">Afegir automòbil<a/>
+                        </div>
+                        <div class="p-6 bg-white border-b border-gray-200">
+                            <a href="{{ url('autos') }}">Esborrar/Modificar/Visualitzar automòbils<a/>
+                        </div>                    
                 </div>
             </div><br>
-
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div>Clients
-                    <div class="p-6 bg-white border-b border-gray-200">
-                        <a href="{{ url('clients/index') }}">Afegir Client<a/>
-                    </div>
-                    <div class="p-6 bg-white border-b border-gray-200">
-                        <a href="{{ url('clients/index') }}">Esborrar/Modificar/Visualitzar clients<a/>
-                    </div>
-                    <div class="p-6 bg-white border-b border-gray-200">
-                        <a href="{{ url('clients/index') }}">Crear informe PDF<a/>
-                    </div>
+            <div>Llogaments
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                        <div class="p-6 bg-white border-b border-gray-200">
+                            <a href="{{ url('clients/crear') }}">Afegir llogament<a/>
+                        </div>
+                        <div class="p-6 bg-white border-b border-gray-200">
+                            <a href="{{ url('clients') }}">Esborrar/Modificar/Visualitzar llogaments<a/>
+                        </div>                    
                 </div>
-            </div>        
+            </div>     
         </div>
     </div>
 </x-app-layout>

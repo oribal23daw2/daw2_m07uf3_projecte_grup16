@@ -15,12 +15,15 @@ class ControladorClient extends Controller
         $dades_clients = Client::all();
         return view('llista-clients', compact('dades_clients'));
     }
-    /**
-     * Show the form for creating a new resource.
-     */
+
+    public function index_basic(){
+        $dades_clients = Client::all();
+        return view('llista-basica', compact('dades_clients'));
+    }
+    
     public function create()
     {
-        return view('client.create');
+        return view('crear-client');
     }
 
     /**
@@ -28,20 +31,19 @@ class ControladorClient extends Controller
      */
     public function store(Request $request)
 {
-    // Validar los datos del formulario
     $nouClient = $request->validate([
-        'Dni_client' => 'required|unique:clients',
-        'Nom_i_cognoms' => 'required',
+        'DNI' => 'required|unique:clients',
+        'Noms' => 'required',
         'Edat' => 'required',
         'Telèfon' => 'required',
         'Adreça' => 'required',
         'Ciutat' => 'required',
         'País' => 'required',
         'Email' => 'required',
-        'Número_del_permís_de_conducció' => 'required',
-        'Punts_del_permís_de_conducció' => 'required',
-        'Tipus_de_targeta' => 'required',
-        'Número_de_la_targeta' => 'required',
+        'Número_permís_conducció' => 'required',
+        'Punts_permís_conducció' => 'required',
+        'Tipus_targeta' => 'required',
+        'Número_targeta' => 'required',
     ]);
 
     $client = Client::create($nouClient);
@@ -53,60 +55,62 @@ class ControladorClient extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($tid)
+    public function show($DNI)
     {
-        $dades_client = Client::findOrFail($tid);
+        $dades_client = Client::findOrFail($DNI);
         return view('mostra', compact('dades_client'));
     }
 
-    public function show_basic($tid)
+    public function show_basic($DNI)
     {
-        $dades_client = Client::findOrFail($tid);
+        $dades_client = Client::findOrFail($DNI);
         return view('mostra-basica', compact('dades_client'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($tid)
+    
+    public function edit($DNI)
     {
-        $dades_client = Client::findOrFail($tid);
+        $dades_client = Client::findOrFail($DNI);
         return view('actualitza', compact('dades_client'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
-{
-    // Validar los datos del formulario
-    $noves_dades_Client = $request->validate([
-        'Dni_client' => 'required|unique:clients,Dni_client,'.$id,
-        'Nom_i_cognoms' => 'required',
-        'Edat' => 'required',
-        'Telèfon' => 'required',
-        'Adreça' => 'required',
-        'Ciutat' => 'required',
-        'País' => 'required',
-        'Email' => 'required',
-        'Número_del_permís_de_conducció' => 'required',
-        'Punts_del_permís_de_conducció' => 'required',
-        'Tipus_de_targeta' => 'required',
-        'Número_de_la_targeta' => 'required',
-    ]);
-
-    Client::findOrFail($id)->update($noves_dades_Client);
-
-    return view('dashboard');
-}
+    public function update(Request $request, $DNI)
+    {
+        // Validar los datos del formulario
+        $noves_dades_client = $request->validate([
+            'DNI' => 'required|unique:clients,DNI,'.$DNI.',DNI',
+            'Noms' => 'required',
+            'Edat' => 'required',
+            'Telèfon' => 'required',
+            'Adreça' => 'required',
+            'Ciutat' => 'required',
+            'País' => 'required',
+            'Email' => 'required',
+            'Número_permís_conducció' => 'required',
+            'Punts_permís_conducció' => 'required',
+            'Tipus_targeta' => 'required',
+            'Número_targeta' => 'required',
+        ]);
+    
+        Client::findOrFail($DNI)->update($noves_dades_client);
+    
+        return view('dashboard');
+    }
+    
 
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($tid)
+    public function destroy($DNI)
     {
-        $client = Client::findOrFail($tid)->delete();
+        $client = Client::findOrFail($DNI)->delete();
         return view('dashboard');
     }
 }

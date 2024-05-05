@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('lloga', function (Blueprint $table) {
-            $table->string('Dni_client');
+            $table->string('DNI');
             $table->string('Matricula_auto');
             $table->date('Data_del_préstec');
             $table->date('Data_de_devolució');
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->timestamps();
 
             // Definición de primary key compuesta
-            $table->primary(['Dni_client', 'Matricula_auto']);
+            $table->primary(['DNI', 'Matricula_auto']);
         });
     }
 

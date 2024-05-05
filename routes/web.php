@@ -3,6 +3,10 @@ use App\Http\Controllers\ControladorClient;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ControladorTreballador;
+use App\Http\Controllers\PDFController;
+use App\Http\Controllers\TelegramController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ControladorAutos;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +22,10 @@ use App\Http\Controllers\ControladorTreballador;
 Route::get('/', function () {
 return view('inici');
 });
+
+Route::post('/login', 'AuthController@login')->name('login');
+Route::post('/logout', 'AuthController@logout')->name('logout');
+Route::post('/telegram', [TelegramController::class, 'handle']);
 
 Route::group(['middleware' => 'auth'], function(){
 
@@ -35,15 +43,19 @@ Route::group(['middleware' => 'auth'], function(){
         return view('dashboard-basic');
     })-> name('dashboard-basic');
 
-    Route::get('trebs/index_basic', [ControladorTreballador::class, 'index_basic'])->name('trebs.index_basic');
-    Route::get('trebs/show_basic/{tid}', [ControladorTreballador::class, 'show_basic'])->name('trebs.show_basic');
-
-    Route::resource('trebs', ControladorTreballador::class);
-
     Route::get('clients/index_basic', [ControladorClient::class, 'index_basic'])->name('clients.index_basic');
+    
     Route::get('clients/show_basic/{tid}', [ControladorClient::class, 'show_basic'])->name('clients.show_basic');
     
-    Route::resource('clients', ControladorClient::class);
+
+    Route::get('clients/crear', [ControladorClient::class, 'create'])->name('clients.create');
+    Route::get('autos/crear', [ControladorAutos::class, 'create'])->name('clients.create');
+    
+    Route::resource('clients', 'App\Http\Controllers\ControladorClient');
+    Route::resource('autos', 'App\Http\Controllers\ControladorAutos');
+
+    Route::get('/pdf/Clients', [PDFController::class, 'generatePDF']);
+
 });
 
 Route::middleware('auth')->group(function () {
