@@ -53,8 +53,12 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('clients', 'App\Http\Controllers\ControladorClient');
     Route::resource('autos', 'App\Http\Controllers\ControladorAutos');
 
-    Route::get('/pdf/Clients', [PDFController::class, 'generatePDF']);
+    Route::get('/pdf/clients', [PDFController::class, 'generatePDF']);
+    Route::get('/pdf/Clients/{DNI}', [PDFController::class, 'generateUnicClientPDF'])->name('pdf.client');
+
     Route::get('/pdf/autos', [PDFController::class, 'generateAutoPDF']);
+    // Route::get('/pdf/client/{DNI}', [PDFController::class, 'generateUnicClientPDF']);
+
 
 });
 

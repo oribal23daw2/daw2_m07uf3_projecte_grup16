@@ -113,4 +113,5 @@ class ControladorClient extends Controller
         $client = Client::findOrFail($DNI)->delete();
         return redirect('/clients')->with('success', '¡Client esborrat correctament!');
     }
+
 }

@@ -38,6 +38,8 @@
                 </button>
             </form>
             <a href="{{ route('clients.show', $cli->DNI)}}" class="btn btn-info btn-sm">Mostra més</a>
+            <!-- <a href="{{ url('/pdf/client/' . $cli->DNI) }}" class="btn btn-info btn-sm">Crear PDF</a> -->
+            <a href="{{ route('pdf.client', $cli->DNI) }}" class="btn btn-primary btn-sm">Fes-ho PDF</a>
         </td>
 
         <script>
@@ -59,7 +61,9 @@
     </tbody>
   </table>
 <div>
-<a href="{{ url('/pdf/Clients') }}" class="btn btn-info btn-sm">Crear PDF</a> 
+<a href="{{ url('/pdf/clients') }}" class="btn btn-info btn-sm">Crear PDF</a> 
+
+<br>
 <div class="p-6 bg-white border-b border-gray-200">
     <a href="{{ url('dashboard') }}">Torna al dashboard</a>
 </div>

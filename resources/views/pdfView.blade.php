@@ -27,22 +27,38 @@
         <thead>
             <tr class="table-primary">
                 <td>DNI</td>
-                <td>Nombre y Apellidos</td>
+                <td>Noms</td>
                 <td>Edad</td>
-                <td>Teléfono</td>
-                <td>Dirección</td>
-                <td>Ciudad</td>
+                <td>Telèfon</td>
+                <td>Direcció</td>
+                <td>Ciutat</td>
                 <td>País</td>
                 <td>Email</td>
                 <td>Número del permís de conducció</td>
                 <td>Punts del permís de conducció</td>
-                <td>Tipo de Tarjeta</td>
-                <td>Número de la Tarjeta</td>
+                <td>Tipus de targeta</td>
+                <td>Número de la targeta</td>
             </tr>
         </thead>
-        <tbody>
-            @foreach($dades_clients as $cli)
+        <tbody> 
+            @if (isset($dades_clients))   
                 <tr>
+                    <td>{{ $dades_clients->DNI }}</td>
+                    <td>{{ $dades_clients->Noms }}</td>
+                    <td>{{ $dades_clients->Edat }}</td>
+                    <td>{{ $dades_clients->Telèfon }}</td>
+                    <td>{{ $dades_clients->Adreça }}</td>
+                    <td>{{ $dades_clients->Ciutat }}</td>
+                    <td>{{ $dades_clients->País }}</td>
+                    <td>{{ $dades_clients->Email }}</td>
+                    <td>{{ $dades_clients->Número_permís_conducció }}</td>
+                    <td>{{ $dades_clients->Punts_permís_conducció }}</td>
+                    <td>{{ $dades_clients->Tipus_targeta }}</td>
+                    <td>{{ $dades_clients->Número_targeta }}</td>
+                </tr>
+            @else
+                @foreach ($dades_clients as $cli)
+                    <tr>
                     <td>{{ $cli->DNI }}</td>
                     <td>{{ $cli->Noms }}</td>
                     <td>{{ $cli->Edat }}</td>
@@ -55,8 +71,9 @@
                     <td>{{ $cli->Punts_permís_conducció }}</td>
                     <td>{{ $cli->Tipus_targeta }}</td>
                     <td>{{ $cli->Número_targeta }}</td>
-                </tr>
-            @endforeach
+                    </tr>
+                @endforeach
+            @endif
         </tbody>
     </table>
     <div class="p-6 bg-white border-b border-gray-200">
