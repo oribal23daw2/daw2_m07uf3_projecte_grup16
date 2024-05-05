@@ -48,7 +48,7 @@ class ControladorClient extends Controller
 
     $client = Client::create($nouClient);
 
-    return view('dashboard');
+    return redirect('/dashboard')->with('success', '¡Client creat correctament!');
 }
 
 
@@ -100,7 +100,7 @@ class ControladorClient extends Controller
     
         Client::findOrFail($DNI)->update($noves_dades_client);
     
-        return view('dashboard');
+        return view('clients');
     }
     
 
@@ -111,6 +111,6 @@ class ControladorClient extends Controller
     public function destroy($DNI)
     {
         $client = Client::findOrFail($DNI)->delete();
-        return view('dashboard');
+        return redirect('/clients')->with('success', '¡Client esborrat correctament!');
     }
 }

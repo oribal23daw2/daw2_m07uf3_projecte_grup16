@@ -15,6 +15,7 @@ public function run(): void
 $this->call([
 UserSeeder::class,
 ClientSeeder::class,
+AutosSeeder::class,
 ]);
 }
 }

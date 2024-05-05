@@ -4,7 +4,6 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ControladorTreballador;
 use App\Http\Controllers\PDFController;
-use App\Http\Controllers\TelegramController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ControladorAutos;
 
@@ -25,7 +24,6 @@ return view('inici');
 
 Route::post('/login', 'AuthController@login')->name('login');
 Route::post('/logout', 'AuthController@logout')->name('logout');
-Route::post('/telegram', [TelegramController::class, 'handle']);
 
 Route::group(['middleware' => 'auth'], function(){
 

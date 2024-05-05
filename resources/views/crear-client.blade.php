@@ -15,6 +15,12 @@
         </ul>
       </div>
     @endif
+
+    @if(session()->has('success'))
+      <div class="alert alert-success">
+          {{ session()->get('Success') }}
+      </div>
+    @endif
     <form method="post" action="{{ url('/clients') }}">
         @csrf
         <!-- https://laravel.com/docs/10.x/csrf -->

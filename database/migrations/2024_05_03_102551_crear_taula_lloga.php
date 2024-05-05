@@ -12,8 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('lloga', function (Blueprint $table) {
-            $table->string('DNI');
+            $table->string('DNI', 9);
+            $table->foreign('DNI')->references('DNI')->on('clients')->onDelete('cascade')->onUpdate('cascade');
             $table->string('Matricula_auto');
+            $table->foreign('Matricula_auto')->references('Matricula_auto')->on('autos')->onDelete('cascade')->onUpdate('cascade');
             $table->date('Data_del_préstec');
             $table->date('Data_de_devolució');
             $table->string('Lloc_de_devolució');
