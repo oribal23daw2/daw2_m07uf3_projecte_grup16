@@ -37,7 +37,7 @@
                     Esborra
                 </button>
             </form>
-            <a href="{{ route('clients.show', $cli->DNI)}}" class="btn btn-info btn-sm">Mostra més</a> 
+            <a href="{{ route('clients.show', $cli->DNI)}}" class="btn btn-info btn-sm">Mostra més</a>
         </td>
 
         <script>
@@ -59,6 +59,7 @@
     </tbody>
   </table>
 <div>
+<a href="{{ url('/pdf/Clients') }}" class="btn btn-info btn-sm">Crear PDF</a> 
 <div class="p-6 bg-white border-b border-gray-200">
     <a href="{{ url('dashboard') }}">Torna al dashboard</a>
 </div>

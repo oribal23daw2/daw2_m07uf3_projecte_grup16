@@ -7,6 +7,7 @@ use App\Http\Controllers\PDFController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ControladorAutos;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -53,6 +54,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('autos', 'App\Http\Controllers\ControladorAutos');
 
     Route::get('/pdf/Clients', [PDFController::class, 'generatePDF']);
+    Route::get('/pdf/autos', [PDFController::class, 'generateAutoPDF']);
 
 });
 

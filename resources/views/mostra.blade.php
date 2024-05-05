@@ -1,5 +1,6 @@
 @extends('disseny')
 @section('content')
+    <br>
     <h1>Dades del client</h1>
     <div class="mt-5">
         <table class="table table-striped table-bordered table-hover">
@@ -60,6 +61,9 @@
                 </tr>
             </tbody>
         </table>
+        <br>
+        <a href="{{ url('/pdf/Clients') }}" class="btn btn-info btn-sm">Crear PDF</a> 
+        <br><br>
         <div class="p-6 bg-white border-b border-gray-200">
             <a href="{{ url('dashboard') }}">Torna al dashboard</a>                     
         </div>
