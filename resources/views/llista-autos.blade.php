@@ -40,7 +40,7 @@
                 </button>
             </form>
             <a href="{{ route('autos.show', $auto->Matricula_auto)}}" class="btn btn-info btn-sm">Mostra més</a>
-            <a href="{{ route('autos.show', $auto->Matricula_auto)}}" class="btn btn-info btn-sm">Crear PDF</a>  
+            <a href="{{ route('pdf.auto', $auto->Matricula_auto) }}" class="btn btn-primary btn-sm">Fes-ho PDF</a> 
         </td>
 
         <script>

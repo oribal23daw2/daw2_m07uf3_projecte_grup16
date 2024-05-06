@@ -40,15 +40,11 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::get('/dashboard-basic', function () {
         return view('dashboard-basic');
-    })-> name('dashboard-basic');
-
-    Route::get('clients/index_basic', [ControladorClient::class, 'index_basic'])->name('clients.index_basic');
-    
-    Route::get('clients/show_basic/{tid}', [ControladorClient::class, 'show_basic'])->name('clients.show_basic');
-    
+    })-> name('dashboard-basic'); 
 
     Route::get('clients/crear', [ControladorClient::class, 'create'])->name('clients.create');
-    Route::get('autos/crear', [ControladorAutos::class, 'create'])->name('clients.create');
+    Route::get('autos/crear', [ControladorAutos::class, 'create'])->name('autos.create');
+    Route::get('lloga/crear', [ControladorLloga::class, 'create'])->name('clients.create');
     
     Route::resource('clients', 'App\Http\Controllers\ControladorClient');
     Route::resource('autos', 'App\Http\Controllers\ControladorAutos');
@@ -57,6 +53,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/pdf/Clients/{DNI}', [PDFController::class, 'generateUnicClientPDF'])->name('pdf.client');
 
     Route::get('/pdf/autos', [PDFController::class, 'generateAutoPDF']);
+    Route::get('/pdf/autos/{Matricula_auto}', [PDFController::class, 'generateAutoPDF'])->name('pdf.auto');
     // Route::get('/pdf/client/{DNI}', [PDFController::class, 'generateUnicClientPDF']);
 
 

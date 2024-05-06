@@ -62,7 +62,7 @@
             </tbody>
         </table>
         <br>
-        <a href="{{ url('/pdf/client/' . $dades_client->DNI) }}" class="btn btn-info btn-sm">Crear PDF</a>
+        <a href="{{ route('pdf.client', $dades_client->DNI) }}" class="btn btn-primary btn-sm">Fes-ho PDF</a>
         <br><br>
         <div class="p-6 bg-white border-b border-gray-200">
             <a href="{{ url('dashboard') }}">Torna al dashboard</a>                     

@@ -53,7 +53,7 @@ class ControladorAutos extends Controller
     public function show($tid)
     {
         $dades_auto = Auto::findOrFail($tid);
-        return view('mostra-cotxes', compact('dades_auto'));
+        return view('mostra', compact('dades_auto'));
     }
 
     public function show_basic($tid)
@@ -69,7 +69,7 @@ class ControladorAutos extends Controller
     public function edit($tid)
     {
         $dades_auto = Auto::findOrFail($tid);
-        return view('actualitza-cotxes', compact('dades_auto'));
+        return view('actualitza', compact('dades_auto'));
     }
 
     /**

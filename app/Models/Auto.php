@@ -11,6 +11,10 @@ class Auto extends Model
 
     protected $primaryKey = 'Matricula_auto'; // Cambiamos la clave primaria a 'Matricula_auto'
 
+    protected $casts = [
+        'Matricula_auto' => 'string'
+    ];
+
     protected $fillable = [
         'Matricula_auto', 'Número_de_bastidor', 'Marca', 'Model', 'Color', // Ajustamos los nombres de los campos
         'Nombre_de_places', 'Nombre_de_portes', 'Grandària_del_maleter', 

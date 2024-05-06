@@ -19,17 +19,13 @@ class PDFController extends Controller
 
     public function generateAutoPDF()
     {
-        $autos = Auto::all(); 
-        $pdf = PDF::loadView('autosPDF', compact('autos'))->setPaper('a4', 'landscape');
+        $dades_auto = Auto::all(); 
+        $pdf = PDF::loadView('autosPDF', compact('dades_auto'))->setPaper('a4', 'landscape');
         return $pdf->stream('llista_autos.pdf');
     }
 
     public function generateUnicClientPDF($DNI)
     {
-        // $dades_clients = Client::findOrFail($DNI);
-        // $pdf = PDF::loadView('unicClientPDF', compact('dades_clients'))->setPaper('a4', 'portrait');
-        // return $pdf->stream('client_' . $DNI . '.pdf');
-        
         $dades_clients = Client::where('DNI', $DNI)->firstOrFail();
         $pdf = PDF::loadView('pdfView', compact('dades_clients'))->setPaper('a4', 'landscape');
         return $pdf->stream("client_{$DNI}.pdf");

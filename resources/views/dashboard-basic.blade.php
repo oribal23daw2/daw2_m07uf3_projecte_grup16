@@ -19,7 +19,7 @@
             <div>Automòbils
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-6 bg-white border-b border-gray-200">
-                            <a href="{{ url('clients/crear') }}">Afegir automòbil<a/>
+                            <a href="{{ url('autos/crear') }}">Afegir automòbil<a/>
                         </div>
                         <div class="p-6 bg-white border-b border-gray-200">
                             <a href="{{ url('clients') }}">Esborrar/Modificar/Visualitzar automòbils<a/>

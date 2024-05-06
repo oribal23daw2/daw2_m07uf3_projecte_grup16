@@ -100,7 +100,7 @@ class ControladorClient extends Controller
     
         Client::findOrFail($DNI)->update($noves_dades_client);
     
-        return view('clients');
+        return view('/dashboard');
     }
     
 
