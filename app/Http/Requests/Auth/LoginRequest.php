@@ -52,8 +52,14 @@ class LoginRequest extends FormRequest
             $user = User::where('email', $this->email)->first();
             if (!$user) {
                 $errors['email'] = 'Usuari incorrecte';
+                throw ValidationException::withMessages([
+                    'database' => 'Usuari incorrecte!',
+                ]);
             } elseif (!Hash::check($this->password, $user->password)) {
                 $errors['password'] = 'Contrasenya incorrecta';
+                throw ValidationException::withMessages([
+                    'database' => 'Contrasenya incorrecte!',
+                ]);
             }
         
             throw ValidationException::withMessages($errors);
@@ -65,9 +71,19 @@ class LoginRequest extends FormRequest
         } catch (\Exception $e) {
             \Log::error($e);  // Log the full exception
         
-            throw ValidationException::withMessages([
-                'database' => 'Usuari i/o contrassenya incorrecte!',
-            ]);
+            $errors = [];
+            $user = User::where('email', $this->email)->first();
+            if (!$user) {
+                $errors['email'] = 'Usuari incorrecte';
+                throw ValidationException::withMessages([
+                    'database' => 'Usuari incorrecte!',
+                ]);
+            } elseif (!Hash::check($this->password, $user->password)) {
+                $errors['password'] = 'Contrasenya incorrecta';
+                throw ValidationException::withMessages([
+                    'database' => 'Contrasenya incorrecte!',
+                ]);
+            }
         }
         
 
