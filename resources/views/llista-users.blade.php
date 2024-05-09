@@ -1,3 +1,4 @@
+<x-app-layout>
 @extends('disseny')
 @section('content')
 <br>
@@ -30,6 +31,7 @@
                     </button>
                 </form>
                 <a href="{{ route('users.show', $usuari->id)}}" class="btn btn-info btn-sm">Mostra més</a>
+                <a href="{{ route('pdf.user', $usuari->id) }}" class="btn btn-primary btn-sm">Fes-ho PDF</a>
             </td>
         </tr>
         @endforeach
@@ -40,4 +42,5 @@
 <div class="p-6 bg-white border-b border-gray-200">
     <a href="{{ url('dashboard') }}">Torna al dashboard</a>
 </div>
+</x-app-layout>
 @endsection

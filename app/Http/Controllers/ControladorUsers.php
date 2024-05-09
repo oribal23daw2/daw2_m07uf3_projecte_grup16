@@ -76,7 +76,7 @@ class ControladorUsers extends Controller
 
         User::findOrFail($id)->update($noves_dades_usuari);
 
-        return redirect()->route('/users')->with('success', 'Usuario actualizado correctamente.');
+        return redirect()->route('users')->with('success', 'Usuario actualizado correctamente.');
     }
 
     /**

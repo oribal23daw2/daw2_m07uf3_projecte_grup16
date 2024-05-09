@@ -1,3 +1,4 @@
+<x-app-layout>
 @extends('disseny')
 @section('content')
 <br>
@@ -69,4 +70,5 @@
         <a href="{{ url('dashboard-basic') }}">Torna al dashboard</a>
     @endif
 </div>
+</x-app-layout>
 @endsection

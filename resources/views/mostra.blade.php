@@ -1,3 +1,4 @@
+<x-app-layout>
 @extends('disseny')
 @section('content')
     <br>
@@ -75,4 +76,5 @@
             <a href="{{ url('clients') }}">Torna a la llista</a>
         </div>
     </div>
+</x-app-layout>
 @endsection

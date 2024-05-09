@@ -29,21 +29,26 @@
                 <td>Nombre</td>
                 <td>Email</td>
                 <td>Fecha de Creación</td>
+                <td>Ultima modificació</td>
             </tr>
         </thead>
         <tbody> 
-            @if (isset($users))
-                @foreach ($users as $user)
+            @if (isset($dades_user))
+            <tr>
+                <td>{{ $dades_user->name }}</td>
+                <td>{{ $dades_user->email }}</td>
+                <td>{{ $dades_user->created_at }}</td>
+                <td>{{ $dades_user->updated_at }}</td>
+            </tr>
+            @else
+                @foreach ($dades_user as $user)
                     <tr>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->created_at }}</td>
+                        <td>{{ $user->updated_at }}</td>
                     </tr>
                 @endforeach
-            @else
-                <tr>
-                    <td colspan="3">No hay usuarios registrados.</td>
-                </tr>
             @endif
         </tbody>
     </table>

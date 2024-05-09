@@ -27,32 +27,26 @@
         <thead>
             <tr class="table-primary">
                 <td>DNI</td>
-                <td>Matrícula_auto</td>
-                <td>Data_del_préstec</td>
-                <td>Data_de_devolució</td>
-                <td>Lloc_de_devolució</td>
-                <td>Preu_per_dia</td>
-                <td>Préstec_amb_retorn_de_dipòsit_ple</td>
-                <td>Tipus_d_assegurança</td>
+                <td>Matrícula automòbil</td>
+                <td>Data del préstec</td>
+                <td>Data de devolució</td>
+                <td>Lloc de devolució</td>
+                <td>Preu per dia</td>
+                <td>Préstec amb retorn de dipòsit ple</td>
+                <td>Tipus d'assegurança</td>
             </tr>
         </thead>
         <tbody> 
-    @if($dades_lloga instanceof Illuminate\Support\Collection)
-        @foreach ($dades_lloga as $lloguer)
-            <tr>
-                <td>{{ $lloguer->DNI }}</td>
-                <td>{{ $lloguer->Matricula_auto }}</td>
-                <td>{{ $lloguer->Data_del_préstec }}</td>
-                <td>{{ $lloguer->Data_de_devolució }}</td>
-                <td>{{ $lloguer->Lloc_de_devolució }}</td>
-                <td>{{ $lloguer->Preu_per_dia }}</td>
-                <td>{{ $lloguer->Préstec_amb_retorn_de_dipòsit_ple }}</td>
-                <td>{{ $lloguer->Tipus_d_assegurança }}</td>
-            </tr>
-        @endforeach
-    @else
+    @if (isset($dades_lloga))  
         <tr>
-            <td colspan="8">No se encontraron registros de alquiler.</td>
+            <td>{{ $dades_lloga->DNI }}</td>
+            <td>{{ $dades_lloga->Matricula_auto }}</td>
+            <td>{{ $dades_lloga->Data_del_préstec }}</td>
+            <td>{{ $dades_lloga->Data_de_devolució }}</td>
+            <td>{{ $dades_lloga->Lloc_de_devolució }}</td>
+            <td>{{ $dades_lloga->Preu_per_dia }}</td>
+            <td>{{ $dades_lloga->Préstec_amb_retorn_de_dipòsit_ple }}</td>
+            <td>{{ $dades_lloga->Tipus_d_assegurança }}</td>
         </tr>
     @endif
 </tbody>

@@ -1,3 +1,4 @@
+<x-app-layout>
 @extends('disseny')
 @section('content')
 <div class="card mt-5">
@@ -16,7 +17,7 @@
         @endif
         <form method="post" action="{{ route('user.update', $dades_user->id) }}">
             @csrf
-            @method('PATCH')
+            @method('PUT')
             <div class="form-group">
                 <label for="name">Nom</label>
                 <input type="text" class="form-control" name="name" value="{{ $dades_user->name }}"/>
@@ -37,4 +38,5 @@
     </div>
 </div>
 <br><a href="{{ url('users') }}">Accés directe a la Llista d'Usuaris</a>
+</x-app-layout>
 @endsection

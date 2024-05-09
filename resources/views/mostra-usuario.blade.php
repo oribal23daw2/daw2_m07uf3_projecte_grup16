@@ -1,3 +1,4 @@
+<x-app-layout>
 @extends('disseny')
 @section('content')
     <br>
@@ -50,3 +51,4 @@
         </div>
     </div>
 @endsection
+</x-app-layout>

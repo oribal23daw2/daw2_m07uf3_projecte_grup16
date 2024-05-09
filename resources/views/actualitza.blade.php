@@ -1,3 +1,4 @@
+<x-app-layout>
 @extends('disseny')
 @section('content')
 <div class="card mt-5">
@@ -73,4 +74,5 @@
     </div>
 </div>
 <br><a href="{{ url('clients') }}">Accés directe a la Llista de clients</a>
+</x-app-layout>
 @endsection

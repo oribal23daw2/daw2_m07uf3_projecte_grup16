@@ -35,8 +35,8 @@ class PDFController extends Controller
 
     public function generateUnicUserPDF($id)
     {
-        $dades_users = User::where('id', $id)->firstOrFail();
-        $pdf = PDF::loadView('pdfView', compact('dades_users'))->setPaper('a4', 'landscape');
+        $dades_user = User::where('id', $id)->firstOrFail();
+        $pdf = PDF::loadView('usersPDF', compact('dades_user'))->setPaper('a4', 'landscape');
         return $pdf->stream("client_{$id}.pdf");
     }
 }

@@ -48,18 +48,21 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('autos/crear', [ControladorAutos::class, 'create'])->name('autos.create');
     Route::get('users/crear', [ControladorUsers::class, 'create'])->name('users.create');
     Route::get('lloga/crear', [ControladorLloga::class, 'create'])->name('lloga.create');
+    Route::get('/users', 'App\Http\Controllers\ControladorUsers@index');
     
     Route::resource('clients', 'App\Http\Controllers\ControladorClient');
     Route::resource('autos', 'App\Http\Controllers\ControladorAutos');
     Route::resource('lloga', 'App\Http\Controllers\ControladorLloga');
     Route::resource('users', 'App\Http\Controllers\ControladorUsers');
     Route::get('/pdf/lloga/{DNI}/{Matricula_auto}', 'PDFController@generateLlogaPDF')->name('pdf.lloga');
+    Route::put('/user/{id}', 'ControladorUsers@update')->name('user.update');
+    Route::get('/users', [App\Http\Controllers\ControladorUsers::class, 'index']);
 
 
     Route::get('/pdf/Clients/{DNI}', [PDFController::class, 'generateUnicClientPDF'])->name('pdf.client');
     Route::get('/pdf/autos/{Matricula_auto}', [PDFController::class, 'generateUnicAutoPDF'])->name('pdf.auto');
     Route::get('/pdf/users/{id}', [PDFController::class, 'generateUnicUserPDF'])->name('pdf.user');
-    Route::get('/pdf/lloga/{DNI}/{Matricula_auto}', [PDFController::class, 'generateLlogaPDF'])->name('pdf.lloga');
+    Route::get('/pdf/lloga/{DNI}/{Matricula_auto}', [PDFController::class, 'generateUnicLlogaPDF'])->name('pdf.lloga');
 
     Route::delete('lloga/{DNI}/{Matricula_auto}', [ControladorLloga::class, 'destroy'])->name('lloga.destroy');
     Route::get('lloga/{DNI}/{Matricula_auto}', [ControladorLloga::class, 'show'])->name('lloga.show');

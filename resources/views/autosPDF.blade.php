@@ -38,19 +38,33 @@
             </tr>
         </thead>
         <tbody> 
-    @foreach ($dades_auto as $auto)
-        <tr>
-            <td>{{ $auto->Matricula_auto }}</td>
-            <td>{{ $auto->Número_de_bastidor }}</td>
-            <td>{{ $auto->Marca }}</td>
-            <td>{{ $auto->Model }}</td>
-            <td>{{ $auto->Color }}</td>
-            <td>{{ $auto->Nombre_de_places }}</td>
-            <td>{{ $auto->Nombre_de_portes }}</td>
-            <td>{{ $auto->Grandària_del_maleter }}</td>
-            <td>{{ $auto->Tipus_de_combustible }}</td>
-        </tr>
-    @endforeach
+            @if (isset($dades_auto))   
+                <tr>
+                    <td>{{ $dades_auto->Matricula_auto }}</td>
+                    <td>{{ $dades_auto->Número_de_bastidor }}</td>
+                    <td>{{ $dades_auto->Marca }}</td>
+                    <td>{{ $dades_auto->Model }}</td>
+                    <td>{{ $dades_auto->Color }}</td>
+                    <td>{{ $dades_auto->Nombre_de_places }}</td>
+                    <td>{{ $dades_auto->Nombre_de_portes }}</td>
+                    <td>{{ $dades_auto->Grandària_del_maleter }}</td>
+                    <td>{{ $dades_auto->Tipus_de_combustible }}</td>
+                </tr>
+            @else
+                @foreach ($dades_auto as $auto)
+                <tr>
+                    <td>{{ $auto->Matricula_auto }}</td>
+                    <td>{{ $auto->Número_de_bastidor }}</td>
+                    <td>{{ $auto->Marca }}</td>
+                    <td>{{ $auto->Model }}</td>
+                    <td>{{ $auto->Color }}</td>
+                    <td>{{ $auto->Nombre_de_places }}</td>
+                    <td>{{ $auto->Nombre_de_portes }}</td>
+                    <td>{{ $auto->Grandària_del_maleter }}</td>
+                    <td>{{ $auto->Tipus_de_combustible }}</td>
+                </tr>
+            @endforeach
+        @endif
 </tbody>
     </table>
 </body>
