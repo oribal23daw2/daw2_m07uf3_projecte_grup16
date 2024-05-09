@@ -3,104 +3,108 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Lloga;
+use App\Models\Client;
 use App\Models\Auto;
 
-class ControladorAutos extends Controller
+class ControladorLloga extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Muestra una lista de los registros de alquiler.
      */
     public function index()
     {
-        $dades_autos = Auto::all();
-        return view('llista-autos', compact('dades_autos'));
+        $dades_lloga = Lloga::all();
+        return view('llista-lloga', compact('dades_lloga'));
     }
 
-    public function index_basic(){
-        $dades_autos = Auto::all();
-        return view('llista-basica', compact('dades_autos'));
-    }
-    
+    /**
+     * Muestra el formulario para crear un nuevo registro de alquiler.
+     */
     public function create()
     {
-        return view('crear-autos');
+        $clients = Client::all();
+        $options_dni = $clients->pluck('DNI', 'DNI')->toArray();
+        $autos = Auto::all();
+        return view('crear-lloga', compact('clients', 'options_dni', 'autos'));
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request){
-        $nouAuto = $request->validate([
-            'Matricula_auto' => 'required|unique:autos',
-            'Número_de_bastidor' => 'required',
-            'Marca' => 'required',
-            'Model' => 'required',
-            'Color' => 'required',
-            'Nombre_de_places' => 'required',
-            'Nombre_de_portes' => 'required',
-            'Grandària_del_maleter' => 'required',
-            'Tipus_de_combustible' => 'required',
-        ]);
-
-        $auto = Auto::create($nouAuto);
-
-        return view('dashboard');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show($tid)
-    {
-        $dades_auto = Auto::findOrFail($tid);
-        return view('mostra', compact('dades_auto'));
-    }
-
-    public function show_basic($tid)
-    {
-        $dades_auto = Auto::findOrFail($tid);
-        return view('mostra-basica', compact('dades_auto'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     
-    public function edit($tid)
-    {
-        $dades_auto = Auto::findOrFail($tid);
-        return view('actualitza', compact('dades_auto'));
-    }
 
     /**
-     * Update the specified resource in storage.
+     * Almacena un nuevo registro de alquiler en la base de datos.
+     */
+    public function store(Request $request)
+{
+    $nouLloguer = $request->validate([
+        'DNI' => 'required|string|exists:clients,DNI',
+        'Matricula_auto' => 'required|string|exists:autos,Matricula_auto', // Cambio aquí
+        'Data_del_préstec' => 'required|date',
+        'Data_de_devolució' => 'required|date',
+        'Lloc_de_devolució' => 'required',
+        'Preu_per_dia' => 'required|numeric',
+        'Préstec_amb_retorn_de_dipòsit_ple' => 'required|boolean',
+        'Tipus_d_assegurança' => 'required|in:Franquícia_fins_a_1000_Euros,Franquíca_fins_500_Euros,Sense_franquícia',
+    ]);
+
+    $lloguer = Lloga::create($nouLloguer);
+
+    return redirect('lloga');
+}
+
+
+    /**
+     * Muestra los detalles de un registro de alquiler específico.
+     */
+    public function show(string $DNI, string $Matricula_auto)
+{
+    $dades_lloga = Lloga::where('DNI', $DNI)->where('Matricula_auto', $Matricula_auto)->firstOrFail();
+    $dades_auto = Auto::where('Matricula_auto', $Matricula_auto)->firstOrFail();
+    $dades_client = Client::where('DNI', $DNI)->firstOrFail();
+
+    return view('mostra-lloga', compact('dades_lloga', 'dades_auto', 'dades_client'));
+}
+
+    /**
+     * Muestra el formulario para editar un registro de alquiler.
+     */
+    public function edit($DNI, $Matricula_auto)
+{
+    $dades_lloga = Lloga::where('DNI', $DNI)->where('Matricula_auto', $Matricula_auto)->first();
+    $dades_clients = Client::all();
+    $dades_auto = Auto::all();
+
+    return view('actualitza-lloga', compact('dades_lloga', 'dades_clients', 'dades_auto'));
+}
+
+    /**
+     * Actualiza un registro de alquiler específico en la base de datos.
      */
     public function update(Request $request, $id)
     {
-        // Validar los datos del formulario
-        $noves_dades_auto = $request->validate([
-            'Matricula_auto' => 'required|unique:autos,Matricula_auto,'.$id,
-            'Número_de_bastidor' => 'required',
-            'Marca' => 'required',
-            'Model' => 'required',
-            'Color' => 'required',
-            'Nombre_de_places' => 'required',
-            'Nombre_de_portes' => 'required',
-            'Grandària_del_maleter' => 'required',
-            'Tipus_de_combustible' => 'required',
+        $noves_dades_lloga = $request->validate([
+            'DNI' => 'required|exists:clients,DNI',
+            'Matricula_auto' => 'required|exists:autos,Matricula_auto',
+            'Data_del_préstec' => 'required|date',
+            'Data_de_devolució' => 'required|date',
+            'Lloc_de_devolució' => 'required',
+            'Preu_per_dia' => 'required|numeric',
+            'Préstec_amb_retorn_de_dipòsit_ple' => 'required|boolean',
+            'Tipus_d_assegurança' => 'required|in:Franquícia_fins_a_1000_Euros,Franquíca_fins_500_Euros,Sense_franquícia',
         ]);
 
-        Auto::findOrFail($id)->update($noves_dades_auto);
+        Lloga::where('DNI', $request->DNI)
+                    ->where('Matricula_auto', $request->Matricula_auto)
+                    ->update($noves_dades_lloga);
 
-        return view('dashboard');
+        return redirect()->route('lloga.index')->with('success', 'Registre de lloguer actualitzat correctament.');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Elimina un registro de alquiler específico de la base de datos.
      */
-    public function destroy($tid)
+    public function destroy(string $Matricula_auto)
     {
-        $auto = Auto::findOrFail($tid)->delete();
-        return view('dashboard');
+        $lloguer = Lloga::findOrFail($Matricula_auto)->delete();
+        return redirect()->route('lloga.index')->with('success', 'Registre de lloguer eliminat correctament.');
     }
 }

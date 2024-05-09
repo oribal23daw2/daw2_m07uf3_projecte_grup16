@@ -48,7 +48,7 @@ class ControladorClient extends Controller
 
     $client = Client::create($nouClient);
 
-    return redirect('/dashboard')->with('success', '¡Client creat correctament!');
+    return redirect('clients');
 }
 
 
@@ -59,12 +59,6 @@ class ControladorClient extends Controller
     {
         $dades_client = Client::findOrFail($DNI);
         return view('mostra', compact('dades_client'));
-    }
-
-    public function show_basic($DNI)
-    {
-        $dades_client = Client::findOrFail($DNI);
-        return view('mostra-basica', compact('dades_client'));
     }
 
     /**
@@ -100,18 +94,17 @@ class ControladorClient extends Controller
     
         Client::findOrFail($DNI)->update($noves_dades_client);
     
-        return view('/dashboard');
+        return redirect('clients');
     }
-    
-
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($DNI)
+    public function destroy( Request $request, $DNI)
     {
         $client = Client::findOrFail($DNI)->delete();
-        return redirect('/clients')->with('success', '¡Client esborrat correctament!');
+        $request->session()->flash('success', '¡Esborrat correctament!');
+        return redirect('clients');
     }
 
 }

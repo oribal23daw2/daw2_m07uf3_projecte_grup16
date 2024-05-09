@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreign('DNI')->references('DNI')->on('clients')->onDelete('cascade')->onUpdate('cascade');
             $table->string('Matricula_auto');
             $table->foreign('Matricula_auto')->references('Matricula_auto')->on('autos')->onDelete('cascade')->onUpdate('cascade');
+            $table->primary(['DNI', 'Matricula_auto']);
             $table->date('Data_del_préstec');
             $table->date('Data_de_devolució');
             $table->string('Lloc_de_devolució');
@@ -25,7 +26,7 @@ return new class extends Migration
             $table->timestamps();
 
             // Definición de primary key compuesta
-            $table->primary(['DNI', 'Matricula_auto']);
+            
         });
     }
 

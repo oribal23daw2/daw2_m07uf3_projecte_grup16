@@ -29,7 +29,7 @@
             <input type="text" class="form-control" name="DNI"/>
         </div>
         <div class="form-group">           
-            <label for="Noms">Nom i cognoms</label>
+            <label for="Noms">Noms</label>
             <input type="text" class="form-control" name="Noms"/>
         </div>
         <div class="form-group">           

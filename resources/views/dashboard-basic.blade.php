@@ -22,17 +22,17 @@
                             <a href="{{ url('autos/crear') }}">Afegir automòbil<a/>
                         </div>
                         <div class="p-6 bg-white border-b border-gray-200">
-                            <a href="{{ url('clients') }}">Esborrar/Modificar/Visualitzar automòbils<a/>
+                            <a href="{{ url('autos') }}">Esborrar/Modificar/Visualitzar automòbils<a/>
                         </div>                    
                 </div>
             </div><br>
             <div>Llogaments
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-6 bg-white border-b border-gray-200">
-                            <a href="{{ url('clients/crear') }}">Afegir llogament<a/>
+                            <a href="{{ url('lloga/crear') }}">Afegir llogament<a/>
                         </div>
                         <div class="p-6 bg-white border-b border-gray-200">
-                            <a href="{{ url('clients') }}">Esborrar/Modificar/Visualitzar llogaments<a/>
+                            <a href="{{ url('lloga') }}">Esborrar/Modificar/Visualitzar llogaments<a/>
                         </div>                    
                 </div>
             </div>

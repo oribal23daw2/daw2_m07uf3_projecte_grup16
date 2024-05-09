@@ -63,6 +63,10 @@
   </table>
 <div>
 <div class="p-6 bg-white border-b border-gray-200">
-    <a href="{{ url('dashboard') }}">Torna al dashboard</a>
+@if(Auth::user()->tipus == 'capDepartament')
+        <a href="{{ url('dashboard') }}">Torna al dashboard</a>
+    @else
+        <a href="{{ url('dashboard-basic') }}">Torna al dashboard</a>
+    @endif
 </div>
 @endsection
